@@ -8,11 +8,20 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.earthquake.databinding.ListItemEarthquakeBinding;
+
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
 
 public class EarthQuakeAdapter extends RecyclerView.Adapter<EarthQuakeAdapter.Viewholder> {
     private final List<Earthquake> mEarthquakeList;
-
+    private static final SimpleDateFormat TIME_FORMAT =
+            new SimpleDateFormat("HH:mm", Locale.US);
+    private static final NumberFormat MAGNITUDE_FORMAT =
+            new DecimalFormat("0.0");
     public EarthQuakeAdapter(List<Earthquake> mEarthquakeList) {
         this.mEarthquakeList = mEarthquakeList;
     }
@@ -20,15 +29,17 @@ public class EarthQuakeAdapter extends RecyclerView.Adapter<EarthQuakeAdapter.Vi
     @NonNull
     @Override
     public Viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.list_item_earthquake, parent,false);
-        return new Viewholder(view);
+        ListItemEarthquakeBinding binding =
+                ListItemEarthquakeBinding.inflate(LayoutInflater.from(parent.getContext()),parent,false);
+
+        return new Viewholder(binding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull Viewholder holder, int position) {
-        holder.earthquake = mEarthquakeList.get(position);
-        holder.detailsView.setText(mEarthquakeList.get(position).toString());
+        Earthquake earthquake = mEarthquakeList.get(position);
+        holder.binding.setEarthquake(earthquake);
+        holder.binding.executePendingBindings();
     }
 
     @Override
@@ -37,19 +48,13 @@ public class EarthQuakeAdapter extends RecyclerView.Adapter<EarthQuakeAdapter.Vi
     }
 
     public class Viewholder extends RecyclerView.ViewHolder{
-        private final View parentView;
-        private final TextView detailsView;
-        private Earthquake earthquake;
-        public Viewholder(@NonNull View itemView) {
-            super(itemView);
-            this.parentView = itemView;
-            this.detailsView = itemView.findViewById(R.id.list_item_earthquake_details);
+        public ListItemEarthquakeBinding binding;
+        public Viewholder(ListItemEarthquakeBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
+            binding.setTimeformat(TIME_FORMAT);
+            binding.setMagnitudeformat(MAGNITUDE_FORMAT);
         }
 
-        @NonNull
-        @Override
-        public String toString(){
-            return super.toString() + " " + detailsView.getText() + " ";
-        }
     }
 }

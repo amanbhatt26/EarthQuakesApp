@@ -4,7 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.text.Layout;
+import android.view.LayoutInflater;
+import android.view.View;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -34,6 +38,25 @@ public class MainActivity extends AppCompatActivity {
         List<Earthquake> dummyQuakes = new ArrayList<Earthquake>(0);
         dummyQuakes.add(new Earthquake("0", now, "San jose", null, 6.0, null));
         dummyQuakes.add(new Earthquake("1", now, "LA", null, 8.0, null));
+        dummyQuakes.add(new Earthquake("2", now, "LAs", null, 8.0, null));
+        dummyQuakes.add(new Earthquake("3", now, "LA", null, 8.0, null));
+        dummyQuakes.add(new Earthquake("4", now, "LAs", null, 8.0, null));
+        dummyQuakes.add(new Earthquake("5", now, "LA", null, 8.0, null));
+        dummyQuakes.add(new Earthquake("6", now, "LAs", null, 8.0, null));
+        dummyQuakes.add(new Earthquake("7", now, "LA", null, 8.0, null));
+        dummyQuakes.add(new Earthquake("8", now, "LAs", null, 8.0, null));
+        dummyQuakes.add(new Earthquake("9", now, "LA", null, 8.0, null));
+        dummyQuakes.add(new Earthquake("10", now, "LAs", null, 8.0, null));
+        dummyQuakes.add(new Earthquake("11", now, "LA", null, 8.0, null));
+        dummyQuakes.add(new Earthquake("12", now, "LAs", null, 8.0, null));
+        dummyQuakes.add(new Earthquake("13", now, "LA", null, 8.0, null));
+        dummyQuakes.add(new Earthquake("14", now, "LAs", null, 8.0, null));
+        dummyQuakes.add(new Earthquake("15", now, "LA", null, 8.0, null));
+        dummyQuakes.add(new Earthquake("16", now, "LAs", null, 8.0, null));
+        dummyQuakes.add(new Earthquake("17", now, "LA", null, 8.0, null));
+        dummyQuakes.add(new Earthquake("18", now, "LAs", null, 8.0, null));
+        dummyQuakes.add(new Earthquake("19", now, "LAs", null, 8.0, null));
+
 
         mEarthquakeListFragment.setEarthquakes(dummyQuakes);
     }
